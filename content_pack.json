@@ -1,0 +1,1609 @@
+{
+	"name": "Fortigate UTM Firewall",
+	"description": "Fortigate UTM content pack contains extractors, a stream, a dashboard displaying the last 24 hours of activity, and a syslog tcp input.",
+	"category": "Firewall",
+	"inputs": [{
+		"title": "fortinet-tcp-input",
+		"configuration": {
+			"recv_buffer_size": 212992,
+			"tcp_keepalive": false,
+			"use_null_delimiter": false,
+			"tls_client_auth_cert_file": "",
+			"force_rdns": false,
+			"bind_address": "0.0.0.0",
+			"tls_cert_file": "",
+			"store_full_message": false,
+			"expand_structured_data": false,
+			"port": 11514,
+			"tls_key_file": "",
+			"tls_enable": false,
+			"tls_key_password": "",
+			"max_message_size": 4097152,
+			"tls_client_auth": "disabled",
+			"override_source": "",
+			"allow_override_date": true
+		},
+		"static_fields": {
+			
+		},
+		"type": "org.graylog2.inputs.syslog.tcp.SyslogTCPInput",
+		"global": true,
+		"extractors": [{
+			"title": "Fortinet Time",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Time",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "time=([0-9:]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 0
+		},
+		{
+			"title": "Fortinet LogID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "LogID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "logid=([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 4
+		},
+		{
+			"title": "Fortinet Type",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Type",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "type=\"?([\\/a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 5
+		},
+		{
+			"title": "Fortinet Traffic Direction",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Traffic_Direction",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "direction=\"?([\\/a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 12
+		},
+		{
+			"title": "Fortinet DeviceID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "DeviceID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "devid=\"?([0-9a-zA-Z]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 3
+		},
+		{
+			"title": "Fortinet Virtual Domain",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "VirtualDomain",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "vd=\"?([a-zA-Z0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 9
+		},
+		{
+			"title": "Fortinet Method",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Method",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "method=\"?([a-zA-Z0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 13
+		},
+		{
+			"title": "Fortinet AppList",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "AppList",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "applist=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 14
+		},
+		{
+			"title": "Fortinet Subtype",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Subtype",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "subtype=\"?([a-zA-Z0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 6
+		},
+		{
+			"title": "Fortinet EventType",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "EventType",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "eventtype=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 7
+		},
+		{
+			"title": "Fortinet Level",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Level",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "level=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 8
+		},
+		{
+			"title": "Fortinet RequestType",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "RequestType",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "reqtype=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 15
+		},
+		{
+			"title": "Fortinet PolicyUUID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "PolicyUUID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "poluuid=\"?([a-zA-Z0-9-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 16
+		},
+		{
+			"title": "Fortinet ServiceName",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "ServiceName",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "service=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 17
+		},
+		{
+			"title": "Fortinet SessionID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "SessionID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "sessionid=\"?([0-9-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 10
+		},
+		{
+			"title": "Fortinet Action",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Action",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "action=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 18
+		},
+		{
+			"title": "Fortinet User",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Target_Account",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "user=\"?([\\/\\\\a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 11
+		},
+		{
+			"title": "Fortinet PolicyGroup",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "PolicyGroup",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "group=\"?([\\/\\\\a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 19
+		},
+		{
+			"title": "Fortinet PolicyID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "PolicyID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "policyid=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 20
+		},
+		{
+			"title": "Fortinet Destination Country",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Destination_Country",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "dstcountry=\"?([\\/a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 21
+		},
+		{
+			"title": "Fortinet Destination Interface",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Destination_Interface",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "dstintf=\"?([\\/a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 22
+		},
+		{
+			"title": "Fortinet Proto",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Proto",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "proto=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 23
+		},
+		{
+			"title": "Fortinet Destination Hostname",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Destination_Hostname",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "hostname=\"?([.a-zA-Z0-9_-]+{2,4})"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 24
+		},
+		{
+			"title": "Fortinet Firewall Message",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Firewall_Message",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "msg=\"?([\\/\\\\.\\?=&a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 25
+		},
+		{
+			"title": "Fortinet Bytes Sent",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Bytes_Sent",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "sentbyte=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 26
+		},
+		{
+			"title": "Fortinet Bytes Received",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Bytes_Received",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "rcvdbyte=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 27
+		},
+		{
+			"title": "Fortinet Profile",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Profile",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "profile=\"?([\\/a-zA-Z0-9_-]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 28
+		},
+		{
+			"title": "Fortinet Source Country",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Source_Country",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "srccountry=\"?([\\/a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 29
+		},
+		{
+			"title": "Fortinet Log Description",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Log_Description",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "logdesc=\"?([\\/a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 30
+		},
+		{
+			"title": "Fortinet AuthProto",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "AuthProto",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "authproto=\"?([\\/\\(\\)\\.a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 31
+		},
+		{
+			"title": "Fortinet Origin Interface",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Origin_Interface",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "srcintf=\"?([\\/a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 32
+		},
+		{
+			"title": "Fortinet Origin Source IP",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Origin_SourceIP",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "srcip=\"?([0-9.]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 33
+		},
+		{
+			"title": "Fortinet Origin Source Port",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Origin_SourcePort",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "srcport=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 34
+		},
+		{
+			"title": "Fortinet Destination IP",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "DestinationIP",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "dstip=\"?([0-9.]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 35
+		},
+		{
+			"title": "Fortinet Destination Port",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "DestinationPort",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "dstport=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 36
+		},
+		{
+			"title": "Fortinet Local Device Name",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "FortinetDeviceName",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "devname=\"?([0-9a-zA-Z_]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 2
+		},
+		{
+			"title": "Fortinet Packets Received",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "ReceivedPacket",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "rcvdpkt=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 37
+		},
+		{
+			"title": "Fortinet Packets Sent",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "SentPacket",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "sentpkt=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 38
+		},
+		{
+			"title": "Fortinet CPU",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "CPU",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "cpu=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 39
+		},
+		{
+			"title": "Fortinet MEM",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "MEM",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "mem=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 40
+		},
+		{
+			"title": "Fortinet Disk",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Disk",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "disk=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 41
+		},
+		{
+			"title": "Fortinet Total Session",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Sessions",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "totalsession=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 42
+		},
+		{
+			"title": "Fortinet Disk Log Rate",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "DiskLogRate",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "disklograte=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 43
+		},
+		{
+			"title": "Fortinet FAZ Log Rate",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "FAZLogRate",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "fazlograte=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 44
+		},
+		{
+			"title": "Fortinet Setup Rate",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "SetupRate",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "setuprate=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 45
+		},
+		{
+			"title": "Fortinet AppCat",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "AppCat",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "appcat=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 47
+		},
+		{
+			"title": "Fortinet AppRisk",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "AppRisk",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "apprisk=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 49
+		},
+		{
+			"title": "Fortinet App Action",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "AppAct",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "appact=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 50
+		},
+		{
+			"title": "Fortinet AppID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "AppID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "appid=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 48
+		},
+		{
+			"title": "Fortinet Duration",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Duration",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "duration=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 51
+		},
+		{
+			"title": "Fortinet TransIP",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "TransIP",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "transip=\"?([0-9.]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 52
+		},
+		{
+			"title": "Fortinet TransPort",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "TransPort",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "transport=\"?([0-9.]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 53
+		},
+		{
+			"title": "Fortinet TransDISP",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "TransDISP",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "trandisp=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 54
+		},
+		{
+			"title": "Fortinet Bandwidth Sent",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Bandwidth_Sent",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "bandwidth=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 55
+		},
+		{
+			"title": "Fortinet Bandwidth Received",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Bandwidth_Received",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "bandwidth=\"?[0-9]+/([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 56
+		},
+		{
+			"title": "Fortinet CountApp",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "CountApp",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "countapp=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 57
+		},
+		{
+			"title": "Fortinet UTM Action",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "UTM_Action",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "utmaction=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 58
+		},
+		{
+			"title": "Fortinet CR_Score",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "CR_Score",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "crscore=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 60
+		},
+		{
+			"title": "Fortinet CR_Action",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "CR_Action",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "craction=\"?([0-9]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 61
+		},
+		{
+			"title": "Fortinet UTM Event",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "UTM_Event",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "utmevent=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [{
+				"type": "NUMERIC",
+				"configuration": {
+					
+				}
+			}],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 59
+		},
+		{
+			"title": "Fortinet Category Description",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "CategoryDescription",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "catdesc=\"?([a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 62
+		},
+		{
+			"title": "Fortinet Category ID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "CategoryID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "cat=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 63
+		},
+		{
+			"title": "Fortinet Attack",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Attack",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "attack=\"?([\\/\\\\.\\?=&a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 64
+		},
+		{
+			"title": "Fortinet Attack_ID",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Attack_ID",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "attackid=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 65
+		},
+		{
+			"title": "Fortinet Attack_REF",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Attack_REF",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "ref=\"?([\\/\\\\.\\:\\?=&a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 66
+		},
+		{
+			"title": "Fortinet Incident Serial Number",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "IncidentSerialNUM",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "incidentserialno=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 67
+		},
+		{
+			"title": "Fortinet DLP FilterType",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "DLP_FilterType",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "filtertype=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 69
+		},
+		{
+			"title": "Fortinet DLP FilterCat",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "DLP_FilterCat",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "filtercat=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 70
+		},
+		{
+			"title": "Fortinet DLP FilterIDX",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "DLP_FilterIDX",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "filteridx=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 71
+		},
+		{
+			"title": "Fortinet Status",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Status",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "status=\"?([a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 1
+		},
+		{
+			"title": "Fortinet URL FilterList",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "URL_FilterList",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "urlfilterlist=\"?([a-zA-Z0-9 _-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 0
+		},
+		{
+			"title": "Fortinet URL FilterIDX",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "URL_FilterIDX",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "urlfilteridx=\"?([0-9]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 0
+		},
+		{
+			"title": "Fortinet Destination URL",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "Destination_URL",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": "url=\"?([\\/\\\\.\\?\\%\\:=&a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 68
+		},
+		{
+			"title": "Fortinet App",
+			"type": "REGEX",
+			"cursor_strategy": "COPY",
+			"target_field": "App",
+			"source_field": "message",
+			"configuration": {
+				"regex_value": " app=\"?([\\.a-zA-Z0-9_-]+)"
+			},
+			"converters": [],
+			"condition_type": "NONE",
+			"condition_value": "",
+			"order": 46
+		}]
+	}],
+	"streams": [{
+		"id": "5786d8cb836a4623b0217e45",
+		"title": "Networking - Fortinet FW",
+		"description": "Incoming Logs from the Fortinet FW",
+		"disabled": false,
+		"matching_type": "AND",
+		"stream_rules": [{
+			"type": "EXACT",
+			"field": "source",
+			"value": "<add the fortigate hostname here>",
+			"inverted": false,
+			"description": null
+		}],
+		"outputs": [],
+		"default_stream": false
+	}],
+	"outputs": [],
+	"dashboards": [{
+		"title": "FortiGate Activity - Last 24 Hours",
+		"description": "Overview of network activity and device statistics",
+		"dashboard_widgets": [{
+			"description": "Top Source Countries Last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "Source_Country",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "*",
+				"show_data_table": true,
+				"show_pie_chart": true
+			},
+			"col": 1,
+			"row": 7,
+			"height": 3,
+			"width": 1
+		},
+		{
+			"description": "Top Destination Countries Last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "Destination_Country",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "*",
+				"show_data_table": true,
+				"show_pie_chart": true
+			},
+			"col": 2,
+			"row": 7,
+			"height": 3,
+			"width": 1
+		},
+		{
+			"description": "Average Memory/CPU/Disk Utilization per Minute last 4 hours",
+			"type": "STACKED_CHART",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 14400
+				},
+				"renderer": "line",
+				"interpolation": "linear",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"series": [{
+					"query": "Action:perf\\-stats",
+					"field": "Disk",
+					"statistical_function": "mean"
+				},
+				{
+					"query": "Action:perf\\-stats",
+					"field": "CPU",
+					"statistical_function": "mean"
+				},
+				{
+					"query": "Action:perf\\-stats",
+					"field": "MEM",
+					"statistical_function": "mean"
+				}],
+				"interval": "minute"
+			},
+			"col": 1,
+			"row": 5,
+			"height": 1,
+			"width": 3
+		},
+		{
+			"description": "Average Sent Bytes per Minute last 24 hours",
+			"type": "FIELD_CHART",
+			"cache_time": 10,
+			"configuration": {
+				"valuetype": "mean",
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"renderer": "area",
+				"interpolation": "linear",
+				"field": "Bytes_Sent",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "*",
+				"interval": "minute"
+			},
+			"col": 1,
+			"row": 2,
+			"height": 1,
+			"width": 2
+		},
+		{
+			"description": "Average Received Bytes per Minute last 24 hours",
+			"type": "FIELD_CHART",
+			"cache_time": 10,
+			"configuration": {
+				"valuetype": "mean",
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"renderer": "area",
+				"interpolation": "linear",
+				"field": "Bytes_Received",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "*",
+				"interval": "minute"
+			},
+			"col": 1,
+			"row": 3,
+			"height": 1,
+			"width": 2
+		},
+		{
+			"description": "Average Disk usage last 24 hours",
+			"type": "STATS_COUNT",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "Disk",
+				"trend": true,
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "Action:perf\\-stats",
+				"stats_function": "mean",
+				"lower_is_better": true
+			},
+			"col": 3,
+			"row": 6,
+			"height": 1,
+			"width": 1
+		},
+		{
+			"description": "Average CPU last 24 hours",
+			"type": "STATS_COUNT",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "CPU",
+				"trend": true,
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "Action:perf\\-stats",
+				"stats_function": "mean",
+				"lower_is_better": true
+			},
+			"col": 2,
+			"row": 6,
+			"height": 1,
+			"width": 1
+		},
+		{
+			"description": "Total Session last 24 hours",
+			"type": "STATS_COUNT",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "Sessions",
+				"trend": true,
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "Action:perf\\-stats",
+				"stats_function": "sum",
+				"lower_is_better": true
+			},
+			"col": 3,
+			"row": 4,
+			"height": 1,
+			"width": 1
+		},
+		{
+			"description": "Average Memory Usage",
+			"type": "STATS_COUNT",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "MEM",
+				"trend": true,
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "Action:perf\\-stats",
+				"stats_function": "mean",
+				"lower_is_better": true
+			},
+			"col": 1,
+			"row": 6,
+			"height": 1,
+			"width": 1
+		},
+		{
+			"description": "Total Sessions per Minute last 24 hours",
+			"type": "FIELD_CHART",
+			"cache_time": 10,
+			"configuration": {
+				"valuetype": "mean",
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"renderer": "bar",
+				"interpolation": "linear",
+				"field": "Sessions",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "Action:perf\\-stats",
+				"interval": "minute"
+			},
+			"col": 1,
+			"row": 4,
+			"height": 1,
+			"width": 2
+		},
+		{
+			"description": "Top Applications last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "App",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "_exists_:App",
+				"show_data_table": true,
+				"show_pie_chart": false
+			},
+			"col": 3,
+			"row": 13,
+			"height": 2,
+			"width": 1
+		},
+		{
+			"description": "DLP Filters by Type last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "DLP_FilterType",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "_exists_:DLP_FilterType",
+				"show_data_table": true,
+				"show_pie_chart": false
+			},
+			"col": 2,
+			"row": 14,
+			"height": 1,
+			"width": 1
+		},
+		{
+			"description": "Top Categories last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "CategoryDescription",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "",
+				"show_data_table": true,
+				"show_pie_chart": true
+			},
+			"col": 3,
+			"row": 7,
+			"height": 3,
+			"width": 1
+		},
+		{
+			"description": "Device Log Descriptions last 24",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "Log_Description",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "_exists_:Log_Description",
+				"show_data_table": true,
+				"show_pie_chart": false
+			},
+			"col": 1,
+			"row": 13,
+			"height": 2,
+			"width": 1
+		},
+		{
+			"description": "Top Web Destinations last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "Destination_Hostname",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "Subtype:webfilter AND EventType:ftgd_allow",
+				"show_data_table": true,
+				"show_pie_chart": true
+			},
+			"col": 1,
+			"row": 10,
+			"height": 3,
+			"width": 1
+		},
+		{
+			"description": "Top URL denied by category in policy last 24 Hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "Destination_Hostname",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "Subtype:webfilter AND EventType:ftgd_blk",
+				"show_data_table": true,
+				"show_pie_chart": true
+			},
+			"col": 2,
+			"row": 10,
+			"height": 3,
+			"width": 1
+		},
+		{
+			"description": "Top Event Types last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "EventType",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "",
+				"show_data_table": true,
+				"show_pie_chart": true
+			},
+			"col": 3,
+			"row": 10,
+			"height": 3,
+			"width": 1
+		},
+		{
+			"description": "Policy Groups Applied last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "PolicyGroup",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "",
+				"show_data_table": true,
+				"show_pie_chart": false
+			},
+			"col": 2,
+			"row": 13,
+			"height": 1,
+			"width": 1
+		},
+		{
+			"description": "Top Services last 24 hours",
+			"type": "QUICKVALUES",
+			"cache_time": 10,
+			"configuration": {
+				"timerange": {
+					"type": "relative",
+					"range": 86400
+				},
+				"field": "ServiceName",
+				"stream_id": "5786d8cb836a4623b0217e45",
+				"query": "",
+				"show_data_table": true,
+				"show_pie_chart": false
+			},
+			"col": 3,
+			"row": 2,
+			"height": 2,
+			"width": 1
+		}]
+	}],
+	"grok_patterns": []
+}
