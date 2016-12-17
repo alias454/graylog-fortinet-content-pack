@@ -2,7 +2,7 @@
 graylog-fortinet-content-pack
 ================
 
-Fortigate UTM content pack contains extractors, a stream, a dashboard displaying the last 24 hours of activity, and a syslog tcp input. This was heavily inspired by another fortigate content pack creatd by juiceman84, which is located here https://github.com/juiceman84/Fortigate_Content_Pack
+Fortigate UTM content pack contains extractors, a stream, a dashboard displaying the last 24 hours of activity, and a syslog tcp input. This was heavily inspired by another fortigate content pack created by juiceman84, which is located here https://github.com/juiceman84/Fortigate_Content_Pack
 
 note
 
