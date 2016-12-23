@@ -1193,8 +1193,7 @@
 			"inverted": false,
 			"description": null
 		}],
-		"outputs": [],
-		"default_stream": false
+		"outputs": []
 	}],
 	"outputs": [],
 	"dashboards": [{
