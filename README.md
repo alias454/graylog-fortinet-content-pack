@@ -9,12 +9,18 @@ note
     See the full `Graylog content pack instructions
     <http://docs.graylog.org/en/2.1/pages/sending_data.html#content-packs>`_.
 
+Known Issues
+================
+Graylog started processing Fortinet and Cisco logs when using the syslog input type so an alternate content pack was added.
+Support using the RawExtractor trying to fix a bug with creation of new sources was submitted by @SmartIdeas01
+
 Provided Content
 ================
 
 A Dashboard: FortiGate Network and System Activity - Last 24 Hours
 A Stream: Networking - Fortinet FW
 An Input: fortinet-tcp-input on port 11514
+Alternate Input: FortiGate RawExtractor on port 11512
 And many extractors 
 
 Setup Notes
